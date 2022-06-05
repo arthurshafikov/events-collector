@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 
+	"github.com/arthurshafikov/events-collector/internal/config"
 	"github.com/arthurshafikov/events-collector/internal/core"
 	"github.com/arthurshafikov/events-collector/internal/repository"
 )
@@ -24,10 +25,11 @@ type Deps struct {
 	Context    context.Context
 	Repository *repository.Repository
 	Logger     Logger
+	Config     *config.Config
 }
 
 func NewServices(deps Deps) *Services {
 	return &Services{
-		Collectors: NewCollector(deps.Logger, deps.Repository.Collector, 5),
+		Collectors: NewCollector(deps.Logger, deps.Repository.Collector, deps.Config.App.BufferSizeLimit),
 	}
 }

@@ -34,5 +34,6 @@ func Run() {
 		Context:    ctx,
 		Repository: repo,
 		Logger:     logger,
+		Config:     config,
 	})
 }
