@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "./;generated";
+
+package api;
+
+service Collector {
+    rpc StoreEvent(EventRequest) returns (ServerResponse) {}
+}
+
+message EventRequest {
+	string EventType = 1;
+    string UserIP = 2;
+}
+
+message ServerResponse {
+	string data = 1;
+}

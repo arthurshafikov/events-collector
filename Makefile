@@ -15,3 +15,6 @@ test:
 	go test --short -race ./internal/... ./pkg/...
 
 .PHONY: build test
+
+generate:
+	protoc -I=api --go_out=internal/transport/grpc/generated --go-grpc_out=internal/transport/grpc/generated api/CollectorService.proto
