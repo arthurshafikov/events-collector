@@ -9,6 +9,7 @@ import (
 	"github.com/arthurshafikov/events-collector/internal/services"
 	"github.com/arthurshafikov/events-collector/internal/transport/grpc/generated"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func RunGrpcServer(ctx context.Context, port string, logger services.Logger, services *services.Services) {
@@ -20,6 +21,7 @@ func RunGrpcServer(ctx context.Context, port string, logger services.Logger, ser
 	collectorHandler := NewCollectorHandler(logger, services.Collectors)
 	grpcServer := grpc.NewServer()
 	generated.RegisterCollectorServer(grpcServer, collectorHandler)
+	reflection.Register(grpcServer)
 
 	go func() {
 		<-ctx.Done()
