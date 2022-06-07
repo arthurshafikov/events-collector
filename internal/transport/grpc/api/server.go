@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 
@@ -10,8 +11,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-func RunGrpcServer(ctx context.Context, address string, logger services.Logger, services *services.Services) {
-	lis, err := net.Listen("tcp", address)
+func RunGrpcServer(ctx context.Context, port string, logger services.Logger, services *services.Services) {
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 	if err != nil {
 		log.Fatalln(err)
 	}

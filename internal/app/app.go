@@ -9,6 +9,7 @@ import (
 	"github.com/arthurshafikov/events-collector/internal/logger"
 	"github.com/arthurshafikov/events-collector/internal/repository"
 	"github.com/arthurshafikov/events-collector/internal/services"
+	grpcapi "github.com/arthurshafikov/events-collector/internal/transport/grpc/api"
 	"github.com/arthurshafikov/events-collector/pkg/clickhousedb"
 )
 
@@ -30,10 +31,12 @@ func Run() {
 	}
 
 	repo := repository.NewRepository(conn)
-	_ = services.NewServices(services.Deps{
+	services := services.NewServices(services.Deps{
 		Context:    ctx,
 		Repository: repo,
 		Logger:     logger,
 		Config:     config,
 	})
+
+	grpcapi.RunGrpcServer(ctx, config.App.Port, logger, services)
 }
