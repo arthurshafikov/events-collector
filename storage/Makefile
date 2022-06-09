@@ -4,9 +4,9 @@ BIN := "./.bin/app"
 DOCKER_COMPOSE_FILE := "./deployments/docker-compose.yml"
 DOCKER_COMPOSE_TEST_FILE := "./deployments/docker-compose.tests.yml"
 
-CLICKHOUSE_DSN := "clickhouse://clickhouse:9000?username=${CLICKHOUSE_USERNAME}&password=${CLICKHOUSE_PASSWORD}&database=${CLICKHOUSE_DATABASE}&x-multi-statement=true"
+CLICKHOUSE_DSN := "clickhouse://localhost:9000?username=${CLICKHOUSE_USERNAME}&password=${CLICKHOUSE_PASSWORD}&database=${CLICKHOUSE_DATABASE}&x-multi-statement=true"
 APP_NAME := "events-collector"
-MIGRATIONS_FOLDER := "/go/src/migrations"
+MIGRATIONS_FOLDER := "./migrations"
 
 GIT_HASH := $(shell git log --format="%h" -n 1)
 LDFLAGS := -X main.release="develop" -X main.buildDate=$(shell date -u +%Y-%m-%dT%H:%M:%S) -X main.gitHash=$(GIT_HASH)
@@ -35,4 +35,10 @@ stop:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} -p ${APP_NAME} stop
 
 migrate:
-	docker exec ${APP_NAME}_app_1 migrate -database ${CLICKHOUSE_DSN} -path ${MIGRATIONS_FOLDER} up
+	migrate -database ${CLICKHOUSE_DSN} -path ${MIGRATIONS_FOLDER} up
+# docker exec ${APP_NAME}_app_1 migrate -database ${CLICKHOUSE_DSN} -path ${MIGRATIONS_FOLDER} up
+
+newmig:
+	migrate create -ext sql -seq -dir ${MIGRATIONS_FOLDER} $(name)
+#  docker exec ${APP_NAME}_app_1 migrate create -ext sql -seq -dir ${MIGRATIONS_FOLDER} $(name)
+
