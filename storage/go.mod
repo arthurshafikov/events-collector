@@ -1,4 +1,4 @@
-module github.com/arthurshafikov/events-collector
+module github.com/arthurshafikov/events-collector/storage
 
 go 1.18
 
