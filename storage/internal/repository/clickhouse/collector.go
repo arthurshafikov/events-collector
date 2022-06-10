@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/ClickHouse/clickhouse-go/v2/lib/driver"
-	"github.com/arthurshafikov/events-collector/internal/core"
+	"github.com/arthurshafikov/events-collector/storage/internal/core"
 )
 
 const EventsTable = "events"

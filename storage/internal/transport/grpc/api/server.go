@@ -6,8 +6,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/arthurshafikov/events-collector/internal/services"
-	"github.com/arthurshafikov/events-collector/internal/transport/grpc/generated"
+	"github.com/arthurshafikov/events-collector/storage/internal/services"
+	"github.com/arthurshafikov/events-collector/storage/internal/transport/grpc/generated"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )

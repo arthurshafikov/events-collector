@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/ClickHouse/clickhouse-go/v2/lib/driver"
-	"github.com/arthurshafikov/events-collector/internal/core"
-	"github.com/arthurshafikov/events-collector/internal/repository/clickhouse"
+	"github.com/arthurshafikov/events-collector/storage/internal/core"
+	"github.com/arthurshafikov/events-collector/storage/internal/repository/clickhouse"
 )
 
 type Collector interface {

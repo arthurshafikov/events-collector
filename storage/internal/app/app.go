@@ -5,12 +5,12 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/arthurshafikov/events-collector/internal/config"
-	"github.com/arthurshafikov/events-collector/internal/logger"
-	"github.com/arthurshafikov/events-collector/internal/repository"
-	"github.com/arthurshafikov/events-collector/internal/services"
-	grpcapi "github.com/arthurshafikov/events-collector/internal/transport/grpc/api"
-	"github.com/arthurshafikov/events-collector/pkg/clickhousedb"
+	"github.com/arthurshafikov/events-collector/storage/internal/config"
+	"github.com/arthurshafikov/events-collector/storage/internal/logger"
+	"github.com/arthurshafikov/events-collector/storage/internal/repository"
+	"github.com/arthurshafikov/events-collector/storage/internal/services"
+	grpcapi "github.com/arthurshafikov/events-collector/storage/internal/transport/grpc/api"
+	"github.com/arthurshafikov/events-collector/storage/pkg/clickhousedb"
 )
 
 func Run() {

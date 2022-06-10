@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 
-	"github.com/arthurshafikov/events-collector/internal/core"
-	"github.com/arthurshafikov/events-collector/internal/repository"
+	"github.com/arthurshafikov/events-collector/storage/internal/core"
+	"github.com/arthurshafikov/events-collector/storage/internal/repository"
 )
 
 type Collector struct {

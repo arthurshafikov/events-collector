@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arthurshafikov/events-collector/internal/core"
-	"github.com/arthurshafikov/events-collector/internal/services"
-	"github.com/arthurshafikov/events-collector/internal/transport/grpc/generated"
+	"github.com/arthurshafikov/events-collector/storage/internal/core"
+	"github.com/arthurshafikov/events-collector/storage/internal/services"
+	"github.com/arthurshafikov/events-collector/storage/internal/transport/grpc/generated"
 )
 
 var successResponse = &generated.ServerResponse{
