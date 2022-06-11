@@ -8,6 +8,8 @@ import (
 	"github.com/arthurshafikov/events-collector/sender/internal/config"
 	"github.com/arthurshafikov/events-collector/sender/internal/logger"
 	"github.com/arthurshafikov/events-collector/sender/internal/services"
+	server "github.com/arthurshafikov/events-collector/sender/internal/transport/http"
+	"github.com/arthurshafikov/events-collector/sender/internal/transport/http/handler"
 )
 
 func Run() {
@@ -23,4 +25,7 @@ func Run() {
 		Config:  config,
 	})
 
+	h := handler.NewHandler(ctx, services)
+
+	server.NewServer(ctx, h).Serve(config.App.Port)
 }
