@@ -30,6 +30,7 @@ func NewHandler(
 }
 
 func (h *Handler) Init(r *router.Router) {
+	h.initAuthRoutes(r)
 }
 
 func (h *Handler) setJSONResponse(ctx *fasthttp.RequestCtx, body interface{}) {
