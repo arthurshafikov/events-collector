@@ -4,9 +4,16 @@ import (
 	"context"
 
 	"github.com/arthurshafikov/events-collector/sender/internal/config"
+	"github.com/arthurshafikov/events-collector/sender/internal/core"
 )
 
+type Auth interface {
+	Register(ctx context.Context, user core.User) error
+	Login(ctx context.Context, inp core.AuthorizeInput) error
+}
+
 type Services struct {
+	Auth
 }
 
 type Logger interface {
@@ -15,11 +22,12 @@ type Logger interface {
 }
 
 type Deps struct {
-	Context context.Context
-	Logger  Logger
-	Config  *config.Config
+	Logger Logger
+	Config *config.Config
 }
 
 func NewServices(deps Deps) *Services {
-	return &Services{}
+	return &Services{
+		Auth: NewAuthService(deps.Logger),
+	}
 }

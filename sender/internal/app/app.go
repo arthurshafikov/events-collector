@@ -20,9 +20,8 @@ func Run() {
 	logger := logger.NewLogger()
 
 	services := services.NewServices(services.Deps{
-		Context: ctx,
-		Logger:  logger,
-		Config:  config,
+		Logger: logger,
+		Config: config,
 	})
 
 	h := handler.NewHandler(ctx, services)
