@@ -2,8 +2,7 @@ package app
 
 import (
 	"context"
-	"os/signal"
-	"syscall"
+	"flag"
 
 	"github.com/arthurshafikov/events-collector/sender/internal/config"
 	"github.com/arthurshafikov/events-collector/sender/internal/logger"
@@ -12,11 +11,13 @@ import (
 	"github.com/arthurshafikov/events-collector/sender/internal/transport/http/handler"
 )
 
-func Run() {
-	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM, syscall.SIGHUP)
-	defer cancel()
+var envFile = *flag.String("env", "./.env", "path to the .env file")
 
-	config := config.NewConfig()
+func Run() {
+	flag.Parse()
+	ctx := context.Background()
+
+	config := config.NewConfig(envFile)
 	logger := logger.NewLogger()
 
 	services := services.NewServices(services.Deps{

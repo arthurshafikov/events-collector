@@ -14,8 +14,8 @@ type App struct {
 	Port string
 }
 
-func NewConfig() *Config {
-	if err := godotenv.Load(); err != nil {
+func NewConfig(envFile string) *Config {
+	if err := godotenv.Load(envFile); err != nil {
 		panic(err)
 	}
 
