@@ -9,7 +9,7 @@ GIT_HASH := $(shell git log --format="%h" -n 1)
 LDFLAGS := -X main.release="develop" -X main.buildDate=$(shell date -u +%Y-%m-%dT%H:%M:%S) -X main.gitHash=$(GIT_HASH)
 
 buildbin:
-	go build -a -o $(BIN) -ldflags "$(LDFLAGS)" cmd/main.go
+	go build -a -o $(BIN) -ldflags "$(LDFLAGS)" cmd/app/main.go
 
 run: buildbin 
 	 $(BIN)
@@ -17,7 +17,7 @@ run: buildbin
 test: 
 	go test --short -race ./internal/... ./pkg/...
 
-.PHONY: buildbin test
+.PHONY: build buildbin test
 
 build:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} -p ${APP_NAME} up -d --build
