@@ -11,7 +11,8 @@ type Config struct {
 }
 
 type App struct {
-	Port string
+	Port           string
+	StorageAddress string
 }
 
 func NewConfig(envFile string) *Config {
@@ -21,7 +22,8 @@ func NewConfig(envFile string) *Config {
 
 	return &Config{
 		App: App{
-			Port: os.Getenv("APP_PORT"),
+			Port:           os.Getenv("APP_PORT"),
+			StorageAddress: os.Getenv("STORAGE_ADDRESS"),
 		},
 	}
 }
