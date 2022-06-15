@@ -27,3 +27,6 @@ up:
 
 stop:
 	docker-compose -f ${DOCKER_COMPOSE_FILE} -p ${APP_NAME} stop
+
+generate:
+	protoc -I=api --go_out=internal/client/generated --go-grpc_out=internal/client/generated api/CollectorService.proto
